@@ -10,6 +10,6 @@ lualatex output.tex
 where `input.md` is the input file from wiki.js, and `output.tex` is the output $\LaTeX$ file.
 
 ## Requirements
-PlantUML: `sudo apt install plantuml` on debian based distros
-Mermaid CLI: `npm install -g @mermaid-js/mermaid-cli`
-Draw.io: [Link](https://github.com/jgraph/drawio-desktop/releases/tag/v24.7.17)
+- PlantUML: `sudo apt install plantuml` on debian based distros
+- Mermaid CLI: `npm install -g @mermaid-js/mermaid-cli`
+- Draw.io: [Link](https://github.com/jgraph/drawio-desktop/releases/tag/v24.7.17)
