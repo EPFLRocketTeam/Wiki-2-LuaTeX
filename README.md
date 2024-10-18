@@ -8,6 +8,7 @@ pandoc --lua-filter src/lua/diagram_filter.lua -s input.md -o output.tex --pdf-e
 lualatex output.tex
 ```
 where `input.md` is the input file from wiki.js, and `output.tex` is the output $\LaTeX$ file.
+`lualatex` then compiles the `.tex` file into a `.pdf`.
 
 ## Requirements
 - PlantUML: `sudo apt install plantuml` on debian based distros
