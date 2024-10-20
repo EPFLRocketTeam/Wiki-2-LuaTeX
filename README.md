@@ -15,6 +15,7 @@ where `input.md` is the input file from wiki.js, and `output.tex` is the output 
 - Mermaid CLI: `npm install -g @mermaid-js/mermaid-cli`
 - Draw.io: [Link](https://github.com/jgraph/drawio-desktop/releases/tag/v24.7.17)
 - Node.js & NPM: [Link](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+- LuaLaTeX: `sudo apt install texlive-full` on debian based distros
 
 ## Quick start to LaTeX
 A typical LaTeX file is structured into two main parts: the **preamble** and the **document body**. Here's a breakdown of both:
