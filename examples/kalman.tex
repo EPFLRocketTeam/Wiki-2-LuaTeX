@@ -1,0 +1,609 @@
+\documentclass[12pt]{article}
+
+% PACKAGE IMPORTS
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{csquotes}
+\usepackage{enumitem}
+\usepackage[font=small,skip=0pt]{caption}
+\usepackage{subcaption}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{booktabs}
+\usepackage{adjustbox}
+\usepackage{calc}
+\usepackage{colortbl}
+\usepackage{array}
+\usepackage{etoolbox}
+\usepackage{wrapfig}
+\usepackage{ragged2e}
+\usepackage{textcomp, gensymb}
+\usepackage{pdflscape}
+\usepackage{pdfpages}
+\usepackage{tikz} % Used for positioning text on title
+\usepackage{geometry} % Used for adjusting the margins
+\usepackage{lastpage} % Used for adding a page count to the footer
+\usepackage[scaled]{helvet} % Helvetica font
+\usepackage{soul} % Used for custom letter spacing on title page
+\usepackage[useregional]{datetime2}
+\usepackage{longtable}
+\usepackage{fancyhdr}
+\usepackage{fancyvrb} % For verbatim environments
+\usepackage{minted} % For syntax highlighting and NormalTok
+
+% FONT SETTINGS
+\renewcommand\familydefault{\sfdefault} % Set default font to sans-serif
+
+% DEFINE COLORS
+\definecolor{ertred}{RGB}{226,12,24} % Rocket team's red for header and footer lines
+\definecolor{issuccess}{RGB}{0,115,10}
+\definecolor{isdanger}{RGB}{200,10,10}
+
+% MARGINS
+\geometry{
+    a4paper,
+    inner=20mm,
+    outer=20mm,
+    top=26mm,
+    bottom=30mm,
+    footskip=10mm,
+    headsep=13mm
+}
+
+% TITLE - INTER LETTER SPACING
+\sodef\an{}{.1em}{0.1em}{0.1em} % Adjust letter spacing in the title 
+
+% FRONT PAGE BACKGROUND IMAGE
+\newcommand\BackgroundPic{
+    \put(0,0){
+        \parbox[b][\paperheight]{\paperwidth}{
+            \vfill
+            \centering
+            \includegraphics[width=\paperwidth,height=\paperheight]{pictures/template/s_title-page.png} % Background title page image
+            \vfill
+        }
+    }
+}
+
+% Shaded environment
+\newenvironment{Shaded}{%
+  \begin{center}
+  \color{gray!30} % Set the shading color (adjust as needed)
+  \begin{minipage}{0.95\textwidth} % Width of shaded box
+}{%
+  \end{minipage}
+  \end{center}
+}
+
+% Verbatim environment for Highlighting
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+
+% Correct order of tables after \paragraph or \subparagraph
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+
+% Prevent overfull lines
+\setlength{\emergencystretch}{3em} 
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\AddToShipoutPicture*{\BackgroundPic}
+\ClearShipoutPicture
+
+% HEADER AND FOOTER
+
+% HEADER AND FOOTER POSITIONING
+\let\oldheadrule\headrule
+\renewcommand{\headrule}{\color{ertred}\oldheadrule} % Add color to headrule
+\renewcommand{\headrulewidth}{1.5pt}
+\renewcommand{\footrule}{\hbox to\headwidth{\color{ertred}\leaders\hrule height \footrulewidth\hfill}}
+\renewcommand{\footrulewidth}{1.5pt}
+\setlength\headheight{29pt}
+
+% HEADER OPTIONS
+\pagestyle{fancy}
+\fancyhead[C]{\rule[-2ex]{0pt}{2ex} \bf{  \fontsize{12}{5} \selectfont 202X\_P\_SS\_GENERIC-ERT-OVERLEAF-TEMPLATE}} % Header document name
+\lhead{}
+\lhead{\includegraphics[height=1.5cm]{pictures/template/ert_logo_small.png}\vspace{-4mm}} % ERT Logo
+\rhead{\includegraphics[height=1.5cm]{pictures/template/s_patch.png}\vspace{-4mm}} % Project Logo
+
+% FOOTER OPTIONS
+\cfoot{}
+\fancyfoot[R]{\bf{\thepage/\pageref{LastPage}}}
+\fancyfoot[L]{\rule[-2ex]{0pt}{2ex}\bf{EPFL ROCKET TEAM}} % Footer Name
+
+% TITLE PAGE
+\begin{titlepage}
+    \vspace*{-2.40cm} % Push title to the top of the page
+    \noindent
+    \hspace*{-1.2cm}
+    \parbox{\linewidth}{%
+        \bfseries\fontsize{34}{38}\selectfont
+        GENERIC ERT OVERLEAF\\
+        TEMPLATE\\
+    }
+    \newline
+    \hspace*{-1.2cm}
+    \parbox{\linewidth}{%
+        \bfseries\fontsize{14}{18}\selectfont
+        NAME Surname - 33000 \\ % Names and scipers
+        NAME Surname - 33001
+    }
+    
+    % ADDITIONAL TITLE PAGE DETAILS
+    \begin{tikzpicture}[remember picture,overlay]
+        \node[anchor=south east,inner sep=39mm] at (current page.south east) {
+            \parbox[b][-2.37cm][t]{15cm}{
+                \raggedleft
+                \fontsize{12}{12} \selectfont \normalfont ME-300 Course Name % Placeholder, replace/add/modify to your liking
+            }
+        };
+    \end{tikzpicture}
+
+    \begin{tikzpicture}[remember picture,overlay]
+        \node[anchor=south east,inner sep=39mm] at (current page.south east) {
+            \parbox[b][-0.8cm][t]{15cm}{
+                \raggedleft
+                \fontsize{12}{12} \selectfont \normalfont Date: \today % Date 
+            }
+        };
+    \end{tikzpicture}
+
+    \begin{tikzpicture}[remember picture,overlay]
+        \node[anchor=south east,inner sep=39mm] at (current page.south east) {
+            \parbox[b][-1.6cm][t]{15cm}{
+                \raggedleft
+                \fontsize{12}{12} \selectfont \normalfont Doc ID: 202X\_P\_SS\_GENERIC-ERT-OVERLEAF-TEMPLATE % Placeholder, replace/add/modify to your liking
+            }
+        };
+    \end{tikzpicture}
+
+\end{titlepage}
+
+% TABLE OF CONTENTS
+\tableofcontents
+\newpage
+
+% PAGE NUMBERING
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\section{Navigation Algorithms}\label{navigation-algorithms}
+
+\section{Kalman Filtering}\label{kalman-filtering}
+
+\subsection{Abstract}\label{abstract}
+
+Kalman filtering is a powerful and widely used technique for estimating
+the state of a dynamic system in the presence of noise. It provides a
+recursive solution to the problem of combining noisy measurements with a
+mathematical model of the system to obtain an optimal estimate of the
+true state. The filter operates by iteratively updating its estimate
+based on new measurements, taking into account the uncertainty
+associated with both the measurements and the system model.
+
+\subsection{Algorithm}\label{algorithm}
+
+The Kalman Filter (KF) work by using and combining input from different
+sensors in order to compute the \textbf{state} of the system. The term
+``state'' refers to \textbf{all variables we want to know about the
+system at any given time}.
+
+The KF is an iterative algorithm composed of \textbf{two steps} :
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Predict} : the KF \textbf{extrapolates} a predicted state
+  based on the \textbf{current state} as well as \textbf{sensors
+  measurements} of the system according to a given \textbf{dynamical
+  system}.
+\item
+  \textbf{Update} : the KF gathers \textbf{observations} from various
+  sensors to \textbf{correct} the predicted state. By \textbf{comparing
+  the predicted state with the actual measurements}, the algorithm can
+  adjust the predicted state and make it more precise.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Mathematical Description}\label{mathematical-description}
+
+\subsubsection{Prediction}\label{prediction}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Symbol
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Name
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Size
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\(\boldsymbol x\) & state vector & & \(n_x*1\) \\
+\(\boldsymbol P\) & covariance matrix & \textbf{uncertainty} associated
+with the state & \(n_x*n_x\) \\
+\(\boldsymbol u\) & control vector & prediction data & \(n_u*1\) \\
+\(\boldsymbol F\) & state transition matrix & \textbf{influence of the
+state} on the dynamical system & \(n_x*n_x\) \\
+\(\boldsymbol G\) & control matrix & \textbf{influence of the controls}
+on the dynamical system & \(n_x*n_u\) \\
+\(\boldsymbol Q\) & covariace noise matrix & \textbf{noise} of the
+predict step & \(n_x*n_x\) \\
+\end{longtable}
+
+\begin{quote}
+\textbf{State extrapolation} is performed as follows :
+
+\[
+\boldsymbol x_{n+1,n} = \boldsymbol F \boldsymbol x_n + \boldsymbol G \boldsymbol u_n\]
+\textbf{Covariance extrapolation} is performed as follows : \[
+\boldsymbol P_{n+1,n} = \boldsymbol F \boldsymbol P_n \boldsymbol F^T + \boldsymbol Q
+\] \(\boldsymbol x_{n+1,n}\) denotes the prediction based on the
+current\\
+state at time .
+\end{quote}
+
+A good example would be the usual equation of motion for a linear
+movement : \(p(tp = p_0 + v_0t + \frac{1}{2}at^2\) (p denotes the
+position). The only sensor we'll be using is an accelerometer and we
+want to know both position and velocity at any given time. For the sake
+of simplicity, we choose to ignore noise and uncertainty.
+
+We first define the state vector and control vector :
+\[\boldsymbol x = [p, v]^T
+\\
+\boldsymbol u = a\]
+
+We also need the system to be written such a way that the state at time
+only depends on the state at time . This may be achieved by writing the
+following :
+
+\[p_{n+1,n} = p_{n} + v_{n}*\Delta t
+\\
+v_{n+1,n} = v_{n} + a_{n}*\Delta t\]
+
+We thus get :
+
+\begin{equation}
+\begin{bmatrix}
+p_{n+1,n}\\
+v_{n+1,n}
+\end{bmatrix} =
+\begin{bmatrix}
+1 & \Delta t\\
+0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+p_n\\
+v_n
+\end{bmatrix}
+\end{equation}
+
+\begin{itemize}
+\item
+  $$\begin{bmatrix}
+  0\\
+  \Delta t
+  \end{bmatrix}$$
+
+  a\_n\$\$ \#\#\# Update \textbar{} Symbol \textbar{} Name \textbar{}
+  Description \textbar{} Size \textbar{} \textbar{} --- \textbar{} ---
+  \textbar{} --- \textbar{} --- \textbar{} \textbar{} \(\boldsymbol z\)
+  \textbar{} observation vector \textbar{} \textbar{} \(n_z*1\)
+  \textbar{} \textbar{} \(\boldsymbol H\)\textbar{} observation matrix
+  \textbar{} state influence on measurements \textbar{}
+  \(n_z*n_x\)\textbar{} \textbar{} \(\boldsymbol R\)\textbar{}
+  measurement covariance matrix \textbar{} \textbf{noise} of the update
+  step \textbar{}\(n_x*n_x\)\textbar{} \textbar{}
+  \(\boldsymbol K\)\textbar{} \textbf{Kalman Gain}\textbar{} determines
+  the \textbf{relative contributions of each observation}
+  \textbar{}\(n_x*n_z\)\textbar{}
+\end{itemize}
+
+\begin{quote}
+The \textbf{Kalman Gain} is computed as follows:
+\[\boldsymbol K_n = \boldsymbol P_{n+1,n}\boldsymbol H^T (\boldsymbol H \boldsymbol P_{n+1,n}\boldsymbol H^T + \boldsymbol R_n)^{-1}\]
+\end{quote}
+
+\begin{quote}
+\textbf{State update} is then performed :
+
+\[
+\boldsymbol x_{n+1} = \boldsymbol x_{n+1,n} + \boldsymbol K_n (\boldsymbol z_n - \boldsymbol H \boldsymbol x_{n+1,n})\]
+Finally, the \textbf{Covariance update} is: \[
+\boldsymbol P_{n+1} = (\boldsymbol I - \boldsymbol K_n \boldsymbol H)\boldsymbol P_{n+1,n}
+\]
+\end{quote}
+
+Further resources may be found
+\href{https://www.kalmanfilter.net/default.aspx}{here}. Note that while
+the equations may slightly differ from what is shown here, both are
+equivalent.
+
+\section{Extended KF (EKF)}\label{extended-kf-ekf}
+
+\subsection{Motivation}\label{motivation}
+
+As the most astute readers may already have noticed, the
+\textbf{``classical'' KF only works with linear transformations}, and
+unfortunately, most models cannot necessarily be written as linear
+transformations.
+
+There is, however, a solution : the most exalted \textbf{Taylor Series}
+! Indeed, let \(f:\mathbb{R}^n \rightarrow \mathbb{R}^m\) s.t
+\(f \in \mathcal{C}^1\), then for any \(\boldsymbol a \in \mathbb{R}^n\)
+:
+\[f(\boldsymbol x) = f(\boldsymbol a) + \boldsymbol J_f(\boldsymbol a)(\boldsymbol x - \boldsymbol a) + \mathcal{O}(\boldsymbol x)\]
+
+The \textbf{Extended Kalman Filter} provides an approach based on this
+results.
+
+\subsection{Mathematical Description}\label{mathematical-description-1}
+
+\subsubsection{Prediction}\label{prediction-1}
+
+We first define the following relationship :
+
+\[\boldsymbol{\dot{x}} = f(\boldsymbol x, \boldsymbol u, \boldsymbol w)\]
+
+Where \(f, \boldsymbol{w}\) respectiveley denote the \textbf{state
+transition function} and the \textbf{process noise} for this step
+(similar to \(\boldsymbol Q\) in the regular KF). From this alone, we
+can derive everything we need for the predict step.
+
+\[\begin{matrix}
+{\boldsymbol F} = \partial_{\boldsymbol x} f({\boldsymbol x}, {\boldsymbol u}, {\boldsymbol w}) \\ {\boldsymbol G} = \partial_{\boldsymbol u} f({\boldsymbol x}, {\boldsymbol u}, {\boldsymbol w})
+\end{matrix}\]
+
+We'll also define
+\(\boldsymbol Q = \boldsymbol G \, diag(\boldsymbol w) \, \boldsymbol G^T + \boldsymbol Q_s\),
+where \(Q_s\) is constant. Giving us an expression for \(\boldsymbol P\)
+
+\[\boldsymbol{\dot{P}} = \boldsymbol F \boldsymbol P + \boldsymbol P \boldsymbol F^T + \boldsymbol Q\]
+
+\begin{quote}
+The \textbf{State extrapolation} thus becomes: \[\begin{bmatrix}
+\boldsymbol x_{n+1,n}\\
+\boldsymbol P_{n+1,n}
+\end{bmatrix} = 
+\begin{bmatrix}
+\boldsymbol x_{n}\\
+\boldsymbol P_{n}
+\end{bmatrix} +
+\int_{\Delta t}
+\begin{bmatrix}
+\boldsymbol{\dot x}_{n}\\
+\boldsymbol{\dot P}_{n}
+\end{bmatrix} dt
+\]
+\end{quote}
+
+\subsubsection{Update}\label{update}
+
+The trick here is very much the same
+
+\[\begin{matrix}
+\boldsymbol{\hat z} = h(\boldsymbol x) \\
+\boldsymbol H = \partial_{\boldsymbol x}h(\boldsymbol x)
+\end{matrix}\]
+
+The equations for \textbf{state update are then the exact same as the
+``classical'' KF's}
+
+\section{Other filters}\label{other-filters}
+
+Other powerful filtering techniques based on the Kalman filter exist.
+Some expanding on the inner workings of the EKF and some relying on
+completely different approaches.
+
+To illustrate this, let us dive into the Unscented Kalman filter :
+
+\subsection{Unscented KF (UKF)}\label{unscented-kf-ukf}
+
+The approach is fundamentaly differnet from the EKF. Instead of
+linearizing the state transition and observation functions. It
+approximates the non-linear functions using a set of carefully chosen
+sigma points. These sigma points are chosen to capture the mean and
+covariance of the state distribution. The number of sigma points is
+typically \(2n_x+1\). Applying such non-linear functions to the sigma
+points then finding mean and covariance is called an \textbf{Unscented
+transform}.
+
+\subsubsection{Predict}\label{predict}
+
+We only consider a single pass through the predict step, but note that
+it works for every iteration. We refer to the i-th sigma point as
+\(X_i\).
+
+\[
+\bar{X} = \sum_{i=0}^{2n_x} W_{i}^{m} f(X_{i})\\
+\bar{P} = \sum_{i=0}^{2n_x} W_{i}^{c} [f(X_{i}) - \bar{X}][f(X_{i}) - \bar{X}]^{T} + Q \]
+
+Where \(W_{i}^{m}\) and \(W_{i}^{c}\) are a set of carefuly tuned
+weights.
+
+\subsubsection{Update}\label{update-1}
+
+In a similar way. We now use \(f(X_{i})\) as the i-th sigma point.
+
+\[
+\bar{Z} = \sum_{i=0}^{2n} W_{i}^{m} f(X_{i})\\
+\bar{S} = \sum_{i=0}^{2n} W_{i}^{c}  (f(X_{i}) - \bar{Z}) (f(X_{i}) - \bar{Z})^{T} + R\\
+C_{xz} = \sum_{i=0}^{2n} W_{i}^{c}  (X_{i} - \bar{X}) (f(X_{i}) - \bar{Z})^{T}\]
+
+Once again, \(W_{i}^{m}\) and \(W_{i}^{c}\) are a set of carefuly tuned
+weights.
+
+The Kalman gain then becomes \(K = C_{xz}\bar{S}^{-1}\) and the update
+can finally be written : \[X^{'} = \bar{X} + K (Z - \bar{Z})\\
+P^{'} = \bar{P} - K \bar{S} K^{T} \]
+
+\subsubsection{Perks \& Drawbacks}\label{perks-drawbacks}
+
+Compared to the EKF, the UKF boasts a more ``cautious'' nature. Indeed,
+comparatively speaking, the EKF tends to be overconfident in its
+approximations. Furthermore, the choice of \(W_{i}^{m}\) and
+\(W_{i}^{c}\) enables the agressiveness of the filter to be precisely
+controlled.
+
+On the downside, the UKF tens to be computationnaly much less efficient,
+due in part to the way the different weights are computed. Furthermore,
+EKF's are usually much easier to implement.
+
+\section{Calibration}\label{calibration}
+
+Calibration is crucial for the Extended Kalman Filter (EKF) for several
+key reasons: - Enhancing Accuracy: Calibration ensures the precision of
+sensor inputs and model parameters, leading to more reliable state
+estimation in dynamic systems. - Correcting Sensor Flaws: It identifies
+and compensates for systematic sensor errors and biases, enhancing the
+EKF's accuracy. - Noise Management: Calibration accurately characterizes
+process and measurement noise, vital for the EKF's performance. - Model
+Refinement: It validates and improves the mathematical model of the
+observed system, aligning EKF predictions with real-world behavior. -
+Maintaining Adaptability: Regular calibration adapts to changing sensor
+characteristics in dynamic environments, keeping the EKF robust. -
+Preventing Divergence: Proper calibration avoids incorrect state
+estimates and the potential for filter divergence, ensuring EKF
+stability.
+
+For our system, the calibration has been done on the accelerometer,
+gyroscope, barometer, and magnetometer data.
+
+\subsection{Accelerometer and gyroscope
+calibration}\label{accelerometer-and-gyroscope-calibration}
+
+To ensure accurate calibration of accelerometer and gyroscope, several
+rotations are executed in \textbf{six distinct orientations}.
+
+This process was designed to separate the sensor outputs into two
+segments: pre-rotation and post-rotation. This separation is crucial for
+eliminating the transient phase that could skew the data.
+
+Following this, a rotation transformation is applied on the
+post-rotation dataset to align the data within a consistent reference
+system. Let \(\boldsymbol R_{nb}\) be the rotation from the body-frame
+to the NED intertial frame
+
+\[
+\boldsymbol x_{post} = R_{nb}\boldsymbol x_{post}
+\]
+
+The final step involved calculating the bias and variance for both
+accelerometer and gyroscope readings. This is achieved by averaging the
+mean and variances, both before (a priori) and after (a posteriori) the
+calibration procedure, as described below:
+
+\[
+\boldsymbol b = \frac{\bar x_{pre} + \bar x_{post}}{2}
+\] \[
+\boldsymbol{\sigma} = \frac{ \sigma_{x,pre}^2 + \sigma_{x,post}^2}{4}
+\]
+
+\subsection{Magnetometer calibration}\label{magnetometer-calibration}
+
+Calibrating a magnetometer \textbf{through ellipsoid fitting} is a
+sophisticated and effective method. It \textbf{corrects for hard iron
+and soft iron distortions}, which are common issues affecting
+magnetometer accuracy. The process involves capturing magnetometer
+readings in various orientations, fitting these readings to an
+ellipsoid, and then applying corrections based on this fit. Here's a
+more detailed algorithm for ellipsoid fitting in magnetometer
+calibration:
+
+\subsubsection{Step 1: Data Collection}\label{step-1-data-collection}
+
+Rotate the magnetometer through a \textbf{wide range of orientations} to
+gather a comprehensive set of measurements. Ensure a \textbf{uniform
+distribution across all directions} to adequately sample the 3D space
+(i.e.~be smooth yet swift).
+
+\subsubsection{Step 2: Ellipsoid
+Fitting}\label{step-2-ellipsoid-fitting}
+
+Use the collected data to \textbf{fit an ellipsoid}. This can be done
+using a least squares fitting algorithm or other numerical methods.
+
+The fitted ellipsoid can be represented by the following equation:
+
+\[\frac{(x−x_c)^2}{a^2}+\frac{(y−y_c)^2}{b^2}+\frac{(z−z_c)^2}{c^2}=1\]
+
+with \((x_c,y_c,z_c)\) are the ellipsoid's center coordinates, and
+\((a,b,c)\) are the radii along the X, Y, and Z axes.
+
+\subsubsection{Step 3: Calculate Correction
+Parameters}\label{step-3-calculate-correction-parameters}
+
+The bias is defined as as the ellipsoid center: \(b = [X_c,Y_c,Z_c]^T\).
+
+Each axis is \emph{scaled} by a certain amount (hence why an ellispoid
+and not a sphere):
+
+\[K = \begin{bmatrix}
+\frac{1}{a} & 0 & 0 \\
+0 & \frac{1}{b} & 0 \\
+0 & 0 & \frac{1}{c} \\
+\end{bmatrix}\]
+
+If available, also keep the rotation information yielded by the fitting
+for later use.
+
+\subsubsection{Step 4: Apply
+Corrections}\label{step-4-apply-corrections}
+
+For each axis, the calibrated measurement is therefore:
+
+\[\boldsymbol{\hat m} = K(\boldsymbol{m_{uncal}} - \boldsymbol{b})\]
+
+If rotation corrections are necessary, apply the appropriate rotation
+matrix to the corrected data.
+
+\subsubsection{Step 5: Verification}\label{step-5-verification}
+
+After applying the corrections, the magnetometer should be tested again
+in various orientations. The corrected readings should form a sphere,
+indicating that distortions have been successfully removed. Verifying
+the accuracy against known reference values or in a controlled
+environment forms the best practice.
+
+\section{Resources}\label{resources}
+
+\end{document}
