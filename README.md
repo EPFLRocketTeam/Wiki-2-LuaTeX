@@ -7,7 +7,7 @@ In a terminal, simply run:
 pandoc --lua-filter src/lua/diagram_filter.lua -s input.md -o output.tex --pdf-engine=lualatex
 lualatex output.tex
 ```
-where `input.md` is the input file from wiki.js, and `output.tex` is the output $\LaTeX$ file.
+where `input.md` is the input file from wiki.js, and `output.tex` is the output \LaTeX file.
 `lualatex` then compiles the `.tex` file into a `.pdf`.
 
 ## Requirements
